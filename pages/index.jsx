@@ -1,18 +1,30 @@
 import React from "react";
-import {
-  ContainerGeneral,
-} from "../components/containers/Containers";
-import { ObjetosData } from "../data/objetos";
-import Loggin from "./login";
+import nookies from "nookies";
+import { ContainerGeneral } from "../components/containers/ContainerGeneral";
+import BannerWeather from "../components/containers/BannerWeather";
+import { WatherService } from "../services/WeatherService";
+import BodyNewsWeather from "../components/containers/bodyNewsWather";
 
 const HomeView = () => {
- const objets = ObjetosData()
 
   return (
     <ContainerGeneral>
-        <Loggin />
+      <BannerWeather />
+      <BodyNewsWeather />
     </ContainerGeneral>
   );
 };
 
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx);
+  const clienteWeather = ""
+  const [dataBd] = await Promise.all([
+    WatherService.getSignIn(clienteWeather),
+  ]);
+
+  return {
+    props: {
+    },
+  };
+}
 export default HomeView
