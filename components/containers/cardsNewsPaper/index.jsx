@@ -4,10 +4,8 @@ import { useStyleCardsNewsPaper } from "./cardsNewsPaper.style";
 const cardsNewsPaper = () => {
   const classes = useStyleCardsNewsPaper();
   return (
-    <div class="container">
-      <div class={classes.card}>
-        <CardNewsPaper />
-        <CardNewsPaper />
+    <div className="container">
+      <div className={classes.card}>
         <CardNewsPaper />
       </div>
     </div>

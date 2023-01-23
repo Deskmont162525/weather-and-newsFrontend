@@ -7,5 +7,12 @@ export const useStyleBodyNewsWeather = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+
+  containerButtom: {
+    padding: "15px",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
   
 }));

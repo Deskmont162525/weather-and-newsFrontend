@@ -184,7 +184,6 @@ body {
   width: 100px;
   height: 100px;
   margin-top: 0px;
-  border-radius: 50%;
 }
 
 
@@ -418,7 +417,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #6EC1E4 ,#152a80);
+  background: linear-gradient(to bottom right, #6EC1E4 ,#152a80, #7ec117);
   /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)); */
 }
 
@@ -426,7 +425,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 15px 15px;
+  padding: 45px 15px 15px;
 }
 
 header input {
@@ -437,8 +436,7 @@ header input {
   outline: none;
   background-color: rgba(255 255 255 / 38%);
   border-radius: 16px 0px 16px 0px;
-  border-bottom: 3px solid #7ec117;
-  
+  border-bottom: 3px solid #7ec117;  
   font-size: 20px;
   font-weight: 300;
   transition: 0.2s ease-out;
@@ -505,12 +503,11 @@ main {
 /* cardNewsPaper inicio */
 a {
   text-decoration: none;
-  color: #fff;
+  color: #7ec117;
 }
 
 .card-body {
   /* background-color: #6EC1E4; */
-  background: linear-gradient(to bottom right, #152a80, #6EC1E4 , #7ec117);
 }
 
 .header-img {

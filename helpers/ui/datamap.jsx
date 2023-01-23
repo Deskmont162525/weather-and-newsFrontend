@@ -50,34 +50,21 @@ export const getDataMapAccordion = (
   return data;
 };
 
-export const getDataMapAccordionBenefictDetails = (
+export const getDataMapAccordionWeather = (
   array,
   Component,
   expanded,
   handleChange,
-  {
-    changeData,
-    changeFilterEstate,
-    showDataAutoG,
-    showDataAutoM,
-    dataTerminos,
-    handlechangeData,
-  }
+  dataVistos
 ) => {
-  
   let data =
     array &&
     array.map((item, index) => {
       return (
-        <Component          
-          dataTerminos={dataTerminos}
+        <Component
+          dataVistos={dataVistos}
           expanded={expanded}
-          changeData={changeData}
-          changeFilterEstate={changeFilterEstate}
           handleChange={handleChange}
-          showDataAutoG={showDataAutoG}
-          showDataAutoM={showDataAutoM}
-          handlechangeData={handlechangeData}
           id={index + 1}
           key={index}
           {...item}

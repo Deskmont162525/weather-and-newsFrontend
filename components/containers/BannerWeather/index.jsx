@@ -30,10 +30,9 @@ const BannerWeather = () => {
         </div>
         <div className="data">
           <div className="cel">
-            <h1>Bienvenido</h1>
+            <h1>Bienvenid@</h1>
             <p className="date">
-              En esta página puedes encontrar la información del clima y las
-              noticias de la ciudad que desees
+            Consulta las noticias y el estado del clima de la ciudad que te interese.
             </p>
             <p>
               Ingresa tu ciudad en el campo de texto y da clic en el botón{" "}
@@ -74,7 +73,7 @@ const BannerWeather = () => {
             <header>
               <input
                 type="text"
-                autocomplete="off"
+                autoComplete="off"
                 className="search-box"
                 placeholder="Ingresa la Ciudad a Consultar..."
               />
