@@ -9,16 +9,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang="es">
         <Head>
+        <link rel="shortcut icon" href="faviconN.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin={value.toString()}
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;600;900&display=swap"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />
