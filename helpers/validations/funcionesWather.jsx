@@ -74,3 +74,16 @@ export const  cadenaAleatoria = (num) => {
 
     return result1;
 }
+
+
+
+export function mainDate() {
+	let weekArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+	let monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	let localDate = new Date()
+	let day = localDate.getDate()
+	let week =  weekArray[localDate.getDay()]
+	let month = monthArray[localDate.getMonth()]
+	let year = localDate.getFullYear()
+	return `${week} ${day} ${month} ${year}`
+}

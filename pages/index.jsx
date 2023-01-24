@@ -1,40 +1,44 @@
 import React from "react";
-import nookies from "nookies";
-import { ContainerGeneral } from "../components/containers/ContainerGeneral";
-import BannerWeather from "../components/containers/BannerWeather";
-import { WatherService } from "../services/WeatherService";
-import BodyNewsWeather from "../components/containers/bodyNewsWather";
-import AccordionsBenefict from "../components/containers/AccordionsWeather";
-const dataVistos = [
-  {city : "nombre", info:"bla bla bla"},
-  {city : "nombre", info:"bla bla bla"},
-  {city : "nombre", info:"bla bla bla"},
-  {city : "nombre", info:"bla bla bla"},
-  {city : "nombre", info:"bla bla bla"},
-  {city : "nombre", info:"bla bla bla"},
-]
-const HomeView = () => {
+import nookies, { setCookie } from "nookies";
+import { UserService } from "../services/UserService";
+import { useRouter } from "next/router";
+import NoSession from "../components/ui/NoSession";
 
+const HomeView = ({dataBd}) => {
+  const router = useRouter();
+  React.useEffect(() => {
+    if(dataBd){
+      if(dataBd?.mensaje_ok !== "error catch"){
+        setCookie(null, "userWeatherNews", JSON.stringify(dataBd?.response), {
+          path: '/',
+          expires: "",
+        })
+        router.push("/inicio");
+      }else {
+        console.log("el servidor esta caido no hay informacion de la bd");
+      }      
+    }    
+  }, []);
   return (
-    <ContainerGeneral>
-      <BannerWeather />
-      <BodyNewsWeather />
-      <AccordionsBenefict
-            dataVistos={dataVistos}
-          />
-    </ContainerGeneral>
+   <>
+   <NoSession />
+   </>
   );
 };
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
-  const clienteWeather = ""
-  const [dataBd] = await Promise.all([
-    WatherService.getSignIn(clienteWeather),
-  ]);
+  const dataUser = cookies.userWeatherNews ? JSON.parse(cookies?.userWeatherNews) : ""; 
 
+  const clienteWeather = cookies.userWeatherNews ? dataUser?.nombres : "";
+  const [dataBd] = await Promise.all([
+    clienteWeather == "" ? 
+    UserService.postCreateUser():
+    UserService.getUserByNameOById(clienteWeather),
+  ]);
   return {
     props: {
+      dataBd,
     },
   };
 }

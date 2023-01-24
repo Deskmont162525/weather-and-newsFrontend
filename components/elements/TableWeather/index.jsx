@@ -6,19 +6,19 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { useStylesTableWeather } from "./TableWeather.style";
+import { historyContext } from "../../../context/historyContext";
 
-export default function TableWeather({ dataTable }) {
+export default function TableWeather() {
   const classes = useStylesTableWeather();
-
+  const { history } = React.useContext(historyContext);
   const [payments, setPayments] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(4);
-
   React.useEffect(() => {
-    if (dataTable.length > 0) {
-      setPayments(dataTable);
+    if (history?.length > 0) {
+      setPayments(history);
     }
-  }, [dataTable]);
+  }, [history]);
 
   return (
     <>

@@ -6,5 +6,9 @@ export const useStyleBannerWeather = makeStyles((theme) => ({
     width: "100%",
     position: "relative",
   },
+
+  error: {
+    borderBottom: "5px solid #D55D43",
+  }
   
 }));

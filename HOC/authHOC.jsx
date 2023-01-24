@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "next/router";
 import { parseCookies } from "nookies";
-import NoSession from "../components/ui/NoSessionRol";
+import NoSession from "../components/ui/NoSession";
 
 export function requireAuthentication(Component, codeComponent) {
   return class AuthenticatedComponent extends React.Component {
@@ -10,28 +10,16 @@ export function requireAuthentication(Component, codeComponent) {
     };
 
     componentDidMount() {
-      const { tokenBenefic, userBenefic, userBeneficRol } = parseCookies();
-      if (tokenBenefic || userBenefic) {
-        if(userBeneficRol === undefined && codeComponent === "1"){
-          this.setState({ isAuthenticated: true });
-        }
-        if(userBeneficRol === "A"){
-          this.setState({ isAuthenticated: true });
-        }
-        if(userBeneficRol === "B" ){
-          if(codeComponent === "2" || codeComponent === "1"){
-            this.setState({ isAuthenticated: true });   
-          } else {
-            Router.push("/dashboard");
-          }
-        }
+      const { userWeatherNews } = parseCookies();
+      if (userWeatherNews) {
+        this.setState({ isAuthenticated: true });
       } else {
         this.redirectLogin();
       }
     }
 
     redirectLogin = () => {
-      Router.push("/login");
+      Router.push("/");
     };
 
     render() {

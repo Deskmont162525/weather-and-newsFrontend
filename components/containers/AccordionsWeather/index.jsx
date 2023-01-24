@@ -1,7 +1,6 @@
-import { Divider, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import React from 'react'
-import { getDataMapAccordionWeather } from '../../../helpers/ui/datamap'
-import AccordionWeather from '../../elements/AccordionWeather'
+import TableWeather from '../../elements/TableWeather'
 
 import { useStyleAccordionsWeather } from './AccordionsWeather.style'
 const dataDrivingRequi = [
@@ -10,25 +9,13 @@ const dataDrivingRequi = [
     contenido: '',
   },
 ]
-const AccordionsWeather = ({ dataVistos }) => {
+const AccordionsWeather = () => {
   const classes = useStyleAccordionsWeather()
-
-  const [expanded, setExpanded] = React.useState('')
-
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false)
-  }
   return (
     <div className={classes.container}>
       <Typography className={classes.title}>LISTA DE CIUDADES VISTAS</Typography>
       <Grid container className={classes.container}>
-        {getDataMapAccordionWeather(
-          dataDrivingRequi,
-          AccordionWeather,
-          expanded,
-          handleChange,
-          dataVistos,
-        )}
+      <TableWeather />
       </Grid>
     </div>
   )

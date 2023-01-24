@@ -1,11 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useStyleBannerWeather } from "./BannerWeather.style";
 import { locate } from "../../../helpers/validations/funcionesWather";
-const BannerWeather = () => {
+import { consultaMultiple } from "../../../actions/climaActions";
+import { climaContext } from "../../../context/climaContext";
+import ButtonPrimary from "../../ui/ButtonPrimary";
+import { ModalResponseSearch } from "../../ui/Modals";
+const BannerWeather = ({ setBannerShow }) => {
+  const { clima, dispatchClima } = React.useContext(climaContext);
   const classes = useStyleBannerWeather();
+  const [search, setSearch] = React.useState("");
+  const [error, setError] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const isOpen = () => setOpen(!open)
+  const [textPlace, setTextPlace] = React.useState("Ingresa la Ciudad a Consultar...");
+
   React.useEffect(() => {
     locate();
   }, []);
+
+  const onChangeButtom = () => {
+    if(search !== ""){
+      consultaMultiple(search, {
+        clima, dispatchClima, isOpen, setBannerShow
+      })      
+    } else {
+      setError(true)
+      setTextPlace("Campo Obligatorio")
+    }
+    
+    
+  };
+  const onchangeInput = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className={classes.container}>
       <div className="container2">
@@ -32,7 +60,8 @@ const BannerWeather = () => {
           <div className="cel">
             <h1>Bienvenid@</h1>
             <p className="date">
-            Consulta las noticias y el estado del clima de la ciudad que te interese.
+              Consulta las noticias y el estado del clima de la ciudad que te
+              interese.
             </p>
             <p>
               Ingresa tu ciudad en el campo de texto y da clic en el botón{" "}
@@ -74,13 +103,16 @@ const BannerWeather = () => {
               <input
                 type="text"
                 autoComplete="off"
-                className="search-box"
-                placeholder="Ingresa la Ciudad a Consultar..."
+                className={error ? classes.error : ""}
+                placeholder={textPlace}
+                onChange={onchangeInput}
               />
             </header>
+            <ButtonPrimary text="BUSCAR" onChangeButtom={onChangeButtom} />
           </div>
         </div>
       </div>
+      <ModalResponseSearch isOpen={open} handleClose={isOpen} searchWord={search}/>
     </div>
   );
 };

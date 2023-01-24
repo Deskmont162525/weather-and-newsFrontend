@@ -5,14 +5,21 @@ import { red } from "@material-ui/core/colors";
 import { createTheme } from "@material-ui/core/styles";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
-import "../styles/globals.scss";
+import "../styles/noSesion.css";
 import authReducer from "../reducers/authReducer";
 import uiReducer from "../reducers/uiReducer";
+import climaReducer from "../reducers/climaReducer";
+import historyReducer from "../reducers/historyReducer";
 
 import { authState } from "../states/authState";
 import { uiState } from "../states/uiState";
+import { climaState } from "../states/climaState";
+import { historyState } from "../states/hisoryState";
+
 import { uiContext } from "../context/uiContext";
 import { authContext } from "../context/authContext";
+import { climaContext } from "../context/climaContext";
+import { historyContext } from "../context/historyContext";
 
 const SiteApp = (props) => {
   const { Component, pageProps } = props;
@@ -56,16 +63,25 @@ const SiteApp = (props) => {
 
   const [auth, dispatchAuth] = React.useReducer(authReducer, authState);
   const [ui, dispatchUi] = React.useReducer(uiReducer, uiState);
+  const [clima, dispatchClima] = React.useReducer(climaReducer, climaState);
+  const [history, dispatchHistory] = React.useReducer(
+    historyReducer,
+    historyState
+  );
 
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <uiContext.Provider value={{ ui, dispatchUi }}>
-          <authContext.Provider value={{ auth, dispatchAuth }}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </authContext.Provider>
-        </uiContext.Provider>
+        <historyContext.Provider value={{ history, dispatchHistory }}>
+          <climaContext.Provider value={{ clima, dispatchClima }}>
+            <uiContext.Provider value={{ ui, dispatchUi }}>
+              <authContext.Provider value={{ auth, dispatchAuth }}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </authContext.Provider>
+            </uiContext.Provider>
+          </climaContext.Provider>
+        </historyContext.Provider>
       </ThemeProvider>
     </div>
   );
