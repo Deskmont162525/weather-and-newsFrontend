@@ -55,14 +55,12 @@ export const getDataMapAccordionWeather = (
   Component,
   expanded,
   handleChange,
-  dataVistos
 ) => {
   let data =
     array &&
     array.map((item, index) => {
       return (
         <Component
-          dataVistos={dataVistos}
           expanded={expanded}
           handleChange={handleChange}
           id={index + 1}

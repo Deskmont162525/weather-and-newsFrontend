@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
         <Head>
         <link rel="shortcut icon" href="faviconN.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link href='https://fonts.googleapis.com/css?family=Carter+One' rel='stylesheet' type='text/css'></link>
         </Head>
         <body>
           <Main />

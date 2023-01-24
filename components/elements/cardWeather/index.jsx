@@ -1,20 +1,24 @@
+import React from "react";
+import { climaContext } from "../../../context/climaContext";
 import { useStyleCardWeather } from "./cardWeather.style";
 
 const CardWeather = () => {
   const classes = useStyleCardWeather();
+  const { clima } = React.useContext(climaContext);
   return (
     <div className="app-wrap">      
       <main>
         <section className="location">
-          <div className="city">Northampton, GB</div>
-          <div className="date">Sunday 1 January 2023</div>
+          <div className="city">{clima?.cityClima +",   "+ clima?.siglas}</div>
+          <div className="date">{clima?.fecha}</div>
         </section>
         <div className="current">
           <div className="temp">
-            15<span>°c</span>
+            {clima?.grados}<span>°c</span>
           </div>
-          <div className="weather">Sunny</div>
-          <div className="hi-low">13°c / 16°c</div>
+          <div className="weather">{clima?.tiempo}</div>
+          <div className="hi-low">{clima?.descripcionTiempo}</div>
+          <div className="hi-low">{clima?.gradoMin}°c / {clima?.gradoMax}°c</div>
         </div>
       </main>
     </div>

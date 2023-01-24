@@ -3,15 +3,16 @@ const headers = () => ({
   "Content-Type": "application/json",
 });
 
-const headersToken = (token) => ({
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: `Bearer ${token}`,
-});
+// consultas
+const get = async (url) => {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: headers(),
+  });
+  return await response.json();
+};
 
-// encript
-
-const postE = async (url, body, token) => {
+const post = async (url, body) => {
   const response = await fetch(url, {
     method: "POST",
     headers: headers(),
@@ -20,65 +21,19 @@ const postE = async (url, body, token) => {
   return await response.json();
 };
 
-// consultas
-const get = async (url, token) => {
-  const response = await fetch(url, {
-    method: "GET",
-    headers: headersToken(token),
-  });
-  return await response.json();
-};
-
-const post = async (url, body, token) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: headersToken(token),
-    body,
-  });
-  return await response.json();
-};
-
-const put = async (url, body, token) => {
+const put = async (url, body) => {
   const response = await fetch(url, {
     method: "PUT",
-    headers: headersToken(token),
+    headers: headers(),
     body,
   });
   return await response.json();
 };
 
-const getS = async (url, body, token) => {
-  const response = await fetch(url, {
-    method: "GET",
-    headers: headersToken(token),
-    body,
-  });
-  return await response.json();
-};
-
-const getR = async (url, token) => {
-  const response = await fetch(url, {
-    method: "GET",
-    headers: headersToken(token),
-  });
-  return await response.text();
-};
-
-const postC = async (url, token) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: headersToken(token),
-  });
-  return await response.text();
-};
 
 
 export const http = {
-  getR,
-  getS,
   get,
   post,
-  postE,
-  postC,
   put,  
 };
