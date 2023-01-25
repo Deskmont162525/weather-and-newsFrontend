@@ -24,7 +24,7 @@ const NoSession = () => {
         </div>
         <div className="hill"></div>
 
-        <span className="not-found">Eres nuevo</span>
+        <span className="not-found">Espera un momento</span>
         <span className="page-404">ESTAMOS CONFIGURANDO TODO PARA QUE TENGAS LA MEJOR EXPERIENCIA CON EL APLICATIVO</span>
         <div className="moon-sky"></div>
         <div className="satellite">☄</div>

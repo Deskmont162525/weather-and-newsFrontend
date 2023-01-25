@@ -6,5 +6,9 @@ export const useStyleButtomWeatherMas = makeStyles((theme) => ({
     width: "100%",
     position: "relative",
   },
+
+  buttomBack: {
+    backgroundColor: "#152a80",
+  },
   
 }));

@@ -4,7 +4,7 @@ export const useStyleAccordionsWeather = makeStyles((theme) => ({
   container: {
     maxWidth: 1260,
     margin: "auto",
-    padding: "0px 62px",
+    padding: "50px 62px",
     width: "100%",
     [theme.breakpoints.down(500)]: {
       padding: "0px 10px",

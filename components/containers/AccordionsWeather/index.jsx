@@ -13,8 +13,8 @@ const AccordionsWeather = () => {
   const classes = useStyleAccordionsWeather()
   return (
     <div className={classes.container}>
-      <Typography className={classes.title}>LISTA DE CIUDADES VISTAS</Typography>
-      <Grid container className={classes.container}>
+      <Typography className={classes.title}>HISTORIAL DE CONSULTAS REALIZADAS</Typography>
+      <Grid container >
       <TableWeather />
       </Grid>
     </div>

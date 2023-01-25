@@ -8,7 +8,7 @@ export const WatherService = {
           .then((response) =>{
                 return response
             }).catch(error =>{
-                console.log(error);
+                // console.log(error);
                 return {
                   cod: 400,
                   data: error

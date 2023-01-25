@@ -1,39 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import nookies from "nookies";
 import { useStyleBannerWeather } from "./BannerWeather.style";
 import { locate } from "../../../helpers/validations/funcionesWather";
 import { consultaMultiple } from "../../../actions/climaActions";
 import { climaContext } from "../../../context/climaContext";
-import ButtonPrimary from "../../ui/ButtonPrimary";
-import { ModalResponseSearch } from "../../ui/Modals";
+import { ModalLazziLoading, ModalResponseSearch } from "../../ui/Modals";
+import { noticiasContext } from "../../../context/noticiasContext";
+import { uiContext } from "../../../context/uiContext";
+import { historyContext } from "../../../context/historyContext";
+
 const BannerWeather = ({ setBannerShow }) => {
-  const { clima, dispatchClima } = React.useContext(climaContext);
   const classes = useStyleBannerWeather();
+  const { dispatchClima } = React.useContext(climaContext);
+  const { dispatchNoticias } = React.useContext(noticiasContext);
+  const { dispatchHistory } = React.useContext(historyContext);
+  const { ui } = React.useContext(uiContext);
   const [search, setSearch] = React.useState("");
   const [error, setError] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const isOpen = () => setOpen(!open)
-  const [textPlace, setTextPlace] = React.useState("Ingresa la Ciudad a Consultar...");
-
-  React.useEffect(() => {
-    locate();
-  }, []);
+  const [loading, setLoading] = React.useState(false);
+  const isOpen = () => setOpen(!open);
+  const [textPlace, setTextPlace] = React.useState(
+    "Ingresa la Ciudad a Consultar..."
+  );
+  // React.useEffect(() => {
+  //   locate();
+  // }, []);
 
   const onChangeButtom = () => {
-    if(search !== ""){
+    if (search !== "") {
+      setLoading(true);
       consultaMultiple(search, {
-        clima, dispatchClima, isOpen, setBannerShow
-      })      
+        dispatchClima,
+        isOpen,
+        setBannerShow,
+        dispatchNoticias,
+        setLoading,
+        dispatchHistory,
+        ui,
+      });
     } else {
-      setError(true)
-      setTextPlace("Campo Obligatorio")
+      setError(true);
+      setTextPlace("Campo Obligatorio");
     }
-    
-    
   };
   const onchangeInput = (e) => {
+    setError(false)
     setSearch(e.target.value);
   };
-
   return (
     <div className={classes.container}>
       <div className="container2">
@@ -65,7 +79,7 @@ const BannerWeather = ({ setBannerShow }) => {
             </p>
             <p>
               Ingresa tu ciudad en el campo de texto y da clic en el botón{" "}
-              <span>BUSCAR</span>
+              <span>CONSULTAR</span>
             </p>
           </div>
           <div className="max_min">
@@ -107,12 +121,24 @@ const BannerWeather = ({ setBannerShow }) => {
                 placeholder={textPlace}
                 onChange={onchangeInput}
               />
+              <br />
+              <input
+                type="button"
+                autoComplete="off"
+                className={error ? classes.error : classes.buttomBack}
+                value="CONSULTAR"
+                onClick={onChangeButtom}
+              />
             </header>
-            <ButtonPrimary text="BUSCAR" onChangeButtom={onChangeButtom} />
           </div>
         </div>
       </div>
-      <ModalResponseSearch isOpen={open} handleClose={isOpen} searchWord={search}/>
+      <ModalResponseSearch
+        isOpen={open}
+        handleClose={isOpen}
+        searchWord={search}
+      />
+      <ModalLazziLoading isOpen={loading} />
     </div>
   );
 };

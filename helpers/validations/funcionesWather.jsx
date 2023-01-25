@@ -10,7 +10,7 @@ export function locate() {
       navigator.geolocation.getCurrentPosition(
         function(location) {
           // Location acquired
-          console.log("location",location);
+          // console.log("location",location);
           latitud = location.coords.latitude;
           longitud = location.coords.longitude;
         //   clima();
@@ -18,7 +18,7 @@ export function locate() {
         function(error) {
           // Error
           // alert('Error locating you');
-          console.log("Error locating you", error);
+          // console.log("Error locating you", error);
           latitud = -34.5875;
           longitud = -58.6725;
         //   clima();
@@ -26,7 +26,7 @@ export function locate() {
       );
     } else {
       /* geolocation IS NOT available */
-      console.log('geolocation IS NOT available');
+      // console.log('geolocation IS NOT available');
     }
   }
 
@@ -56,10 +56,10 @@ export function locate() {
       })
       .fail(function(data) {
         $('.clima').text('Error');
-        console.log('Error', data);
+        // console.log('Error', data);
       })
       .always(function(data) {
-        console.log('Terminó');
+        // console.log('Terminó');
       });
   }
 
