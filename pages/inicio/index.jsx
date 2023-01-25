@@ -6,26 +6,33 @@ import { ContainerGeneral } from "../../components/containers/ContainerGeneral";
 import { requireAuthentication } from "../../HOC/authHOC";
 import { HistoryService } from "../../services/HistoryService";
 import React from "react";
-import ButtomWeatherConsultarO from "../../components/ui/ButtonConsultarOtro";
 import { historyContext } from "../../context/historyContext";
-import { ADD_DATA_HISTORY } from "../../type";
+import { ADD_DATA_HISTORY, ADD_USERS_DATA } from "../../type";
+import { uiContext } from "../../context/uiContext";
 
-const InicioWeatherView = ({dataUser, dataBd}) => {
-  const [bannerShow, setBannerShow] = React.useState(false)
+const InicioWeatherView = ({ dataUser, dataBd }) => {
+  const [bannerShow, setBannerShow] = React.useState(false);
   const { dispatchHistory } = React.useContext(historyContext);
+  const { dispatchUi } = React.useContext(uiContext);
 
   React.useEffect(() => {
-    if(dispatchHistory){
+    if (dispatchHistory) {
       dispatchHistory({
         type: ADD_DATA_HISTORY,
-        payload: dataBd,
-      })
+        payload: dataBd?.response,
+      });      
+    }
+    if(dataUser){
+      dispatchUi({
+        type: ADD_USERS_DATA,
+        payload: dataUser,
+      }); 
     }
   }, []);
   const showDataR = () => {
     if (dataBd) {
       if (dataBd?.mensaje_ok !== "error catch") {
-        return <AccordionsBenefict  />;
+        return <AccordionsBenefict />;
       } else {
         return "";
       }
@@ -33,16 +40,12 @@ const InicioWeatherView = ({dataUser, dataBd}) => {
   };
   return (
     <ContainerGeneral>
-      {!bannerShow &&(
-        <BannerWeather setBannerShow={setBannerShow}/>
-      )}
-      {bannerShow &&(
-        <>
-        <ButtomWeatherConsultarO onchange={setBannerShow}/>
-        <BodyNewsWeather />
-        </>
-      )}
-      
+      {!bannerShow && <BannerWeather setBannerShow={setBannerShow} />}
+      {bannerShow && <BodyNewsWeather setBannerShow={setBannerShow} />}
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       {showDataR()}
     </ContainerGeneral>
   );

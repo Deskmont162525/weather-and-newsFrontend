@@ -24,14 +24,14 @@ export const UserService = {
           };
         })
         .catch((ex) => {
-          console.log(ex);
+          // console.log(ex);
           return {
             mensaje_ok: "error catch",
             // response: ex,
           };
         });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       throw Error("Error al obtener postCreateUser");
     }
   },

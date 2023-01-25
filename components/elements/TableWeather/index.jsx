@@ -12,14 +12,13 @@ export default function TableWeather() {
   const classes = useStylesTableWeather();
   const { history } = React.useContext(historyContext);
   const [payments, setPayments] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(4);
+  // const [page, setPage] = React.useState(0);
+  // const [rowsPerPage, setRowsPerPage] = React.useState(4);
   React.useEffect(() => {
     if (history?.length > 0) {
       setPayments(history);
     }
   }, [history]);
-
   return (
     <>
       <TableContainer>
@@ -36,7 +35,7 @@ export default function TableWeather() {
           </TableHead>
           <TableBody>
             {payments
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, key) => (
                 <TableRow key={key}>
                   <TableCell

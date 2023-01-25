@@ -9,6 +9,12 @@ export const useStyleBannerWeather = makeStyles((theme) => ({
 
   error: {
     borderBottom: "5px solid #D55D43",
-  }
+    backgroundColor: "#152a80",
+  },
+
+  buttomBack: {
+    backgroundColor: "#152a80",
+  },
+
   
 }));

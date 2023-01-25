@@ -7,4 +7,7 @@ export const useStyleCardWeather = makeStyles((theme) => ({
     position: "relative",
   },
   
+  buttomBack: {
+    backgroundColor: "#152a80",
+  },
 }));
